@@ -1,6 +1,6 @@
 package com.backend.system.services;
 
-import com.backend.system.models.domain.User;
+import com.backend.system.models.domain.user.User;
 import com.backend.system.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +14,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository repository;
 
-    @Override
+    @Override // Carrega o usuário com base no email fornecido.
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = repository.findByEmail(username);
         if (user == null) {

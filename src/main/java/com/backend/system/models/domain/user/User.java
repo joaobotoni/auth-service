@@ -1,17 +1,17 @@
-package com.backend.system.models.domain;
+package com.backend.system.models.domain.user;
 
-import com.backend.system.models.enums.UserRole;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
+import com.backend.system.models.enums.UserRole;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
+import java.util.List;
+import java.util.Collection;
 
 @Data
 @NoArgsConstructor
@@ -19,6 +19,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -36,8 +37,22 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private UserRole role;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+    public User(String username, String email, String password, UserRole role) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+       this.role = role;
     }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override  // Retorna a autoridade do usuário com base no seu papel (role)
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if(this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
 }

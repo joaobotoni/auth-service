@@ -1,7 +1,7 @@
 package com.backend.system.models.enums;
 
 public enum UserRole {
-    USER("ROLE_USER"), ADMIN("ROLE_ADMIN");
+    USER("user"), ADMIN("admin");
 
     private final String role;
 
