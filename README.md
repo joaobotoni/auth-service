@@ -16,12 +16,13 @@ O projeto é estruturado de forma modular, seguindo boas práticas de desenvolvi
 
 ## Funcionalidades Implementadas
 
-- `Cadastro e autenticação de usuários` utilizando JWT e Spring Security.
-- `Proteção de rotas` com base em papéis de usuário (admin, cliente, etc.).
-- `Cadastro de produtos`, gerenciamento de estoques e realização de pedidos.
-- `Desabilitação do CSRF`, já que estamos utilizando autenticação baseada em token e não formulários tradicionais.
-- `Persistência de dados` com PostgreSQL em produção e H2 para testes.
-- `Padrão ORM` utilizando `JPA` e `Hibernate` para mapeamento objeto-relacional.
+- **Cadastro e autenticação de usuários** utilizando JWT e Spring Security.
+- **Proteção de rotas** com base em papéis de usuário (admin, user, etc.).
+- **Cadastro de produtos**, gerenciamento de estoques e realização de pedidos.
+- **Desabilitação do CSRF** (Cross-site request forgery), já que estamos utilizando autenticação baseada em token e não formulários tradicionais.
+- **Persistência de dados** com PostgreSQL em produção e H2 para testes.
+- **Padrão ORM** utilizando **JPA** e **Hibernate** para mapeamento objeto-relacional.
+- **Arquitetura Stateless**, onde a autenticação e a autorização são realizadas com JWT, sem a necessidade de sessões no servidor.
 
 ## Tecnologias Utilizadas
 
