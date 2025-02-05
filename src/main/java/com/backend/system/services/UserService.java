@@ -21,7 +21,7 @@ public class UserService {
         } else {
             user.setPassword(passwordEncoder().encode(user.getPassword()));
             repository.save(user);
-            UserDTO dto = new UserDTO(user.getUsername(), user.getEmail(), user.getPassword());
+            UserDTO dto = new UserDTO(user.getUsername(),user.getEmail(), user.getPassword());
             return ResponseEntity.ok(dto);
         }
     }

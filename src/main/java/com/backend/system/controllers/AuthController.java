@@ -5,6 +5,7 @@ import com.backend.system.models.domain.user.UserData;
 import com.backend.system.models.dto.UserDTO;
 import com.backend.system.repositories.UserRepository;
 import com.backend.system.services.UserService;
+import com.backend.system.settings.infra.TokenService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,16 +27,16 @@ public class AuthController {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    TokenService tokenService;
 
-    @Autowired
-    UserRepository repository;
+    /* O AuthenticationManager é responsável por autenticar um usuário com base nas credenciais fornecidas. */
 
     @PostMapping("/login")
     public ResponseEntity<UserDTO> login(@RequestBody UserData data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
-        var auth = authenticationManager.authenticate(usernamePassword);
+        var auth = authenticationManager.authenticate(usernamePassword); // Retornar uma Authentication se as credenciais forem válidas
 
+        var token = tokenService.generateToken((User) auth.getPrincipal()); // gera um token a partir do usuario logado
         return ResponseEntity.ok().build();
     }
 

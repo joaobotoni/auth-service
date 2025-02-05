@@ -13,13 +13,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Autowired
-    CustomUserDetailsService service;
+    SecurityFilter filter;
 
     @Bean // Define o filtro de segurança para a aplicação
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -29,17 +30,18 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) -> authorize  // Configura permissões para diferentes URLs
                         .requestMatchers("/auth/register", "/auth/login").permitAll()  // Permite acesso sem autenticação para as rotas de login e registro
                         .anyRequest().authenticated()  // Exige autenticação para qualquer outra requisição
-                );
+                )
+                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class); // Adiciona um filtro antes de fazer a verificação das credenciais
 
         return http.build();
     }
 
-    @Bean // Cria um bean para o AuthenticationManager, que gerencia o processo de autenticação.
+    @Bean // O método retorna um AuthenticationManager configurado automaticamente pelo Spring Security.
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
          return configuration.getAuthenticationManager();
     }
 
-    @Bean  // Cria um bean de BCryptPasswordEncoder para codificar as senhas
+    @Bean // É usado para codificar senhas de maneira segura no Spring Security.
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
