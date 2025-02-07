@@ -1,4 +1,4 @@
-package com.backend.system.models.domain;
+package com.backend.system.models.domain.product;
 
 import lombok.Data;
 import jakarta.persistence.*;
@@ -21,4 +21,8 @@ public class Product {
     private String name;
     @Column(nullable = false)
     private Double price;
+    @Column(nullable = false)
+    private String category;
+    @Column(nullable = false)
+    private UUID userId;
 }

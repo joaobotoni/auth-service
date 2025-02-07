@@ -1,6 +1,6 @@
 package com.backend.system.repositories;
 
-import com.backend.system.models.domain.Product;
+import com.backend.system.models.domain.product.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

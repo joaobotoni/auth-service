@@ -43,10 +43,15 @@ public class User implements UserDetails {
         return email;
     }
 
-    @Override  // Retorna a autoridade do usuário com base no seu papel (role)
+    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
-        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        if (this.role == UserRole.ADMIN) {
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        } else if (this.role == UserRole.USER) {
+            return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        } else {
+            return List.of();
+        }
     }
 
 }

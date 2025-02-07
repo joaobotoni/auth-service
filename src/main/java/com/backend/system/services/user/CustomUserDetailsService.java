@@ -1,4 +1,4 @@
-package com.backend.system.services;
+package com.backend.system.services.user;
 
 import com.backend.system.models.domain.user.User;
 import com.backend.system.repositories.UserRepository;
