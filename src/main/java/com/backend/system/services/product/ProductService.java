@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional; // Import for transactions
+
 
 @Service
 public class ProductService {
@@ -35,9 +35,9 @@ public class ProductService {
             return productDTO;
 
         } catch (PersistenceException exception) {
-            throw new RuntimeException("Error saving product: " + exception.getMessage(), exception);
-        } catch (Exception ex) {
-            throw new RuntimeException("An unexpected error occurred: " + ex.getMessage(), ex);
+            throw new RuntimeException("Error saving product: " + exception);
+        } catch (Exception exception) {
+            throw new RuntimeException("An unexpected error occurred: " + exception);
         }
     }
 }
