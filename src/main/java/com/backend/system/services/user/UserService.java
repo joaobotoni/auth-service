@@ -1,7 +1,8 @@
 package com.backend.system.services.user;
 
 import com.backend.system.models.domain.user.User;
-import com.backend.system.models.dto.UserDTO; // Import UserDTO
+import com.backend.system.models.dto.UserDTO;
+import com.backend.system.models.mapper.UserMapper;
 import com.backend.system.repositories.UserRepository;
 import jakarta.persistence.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class UserService {
     @Autowired
     UserRepository repository;
 
+    @Autowired
+    UserMapper mapper;
+
     public UserDTO create(User user) throws RuntimeException {
         try {
             if (repository.findByEmail(user.getEmail()) != null) {
@@ -22,12 +26,7 @@ public class UserService {
             user.setPassword(passwordEncoder().encode(user.getPassword()));
             try {
                 repository.save(user);
-
-                UserDTO userDTO = new UserDTO();
-                userDTO.setUsername(user.getUsername());
-                userDTO.setEmail(user.getEmail());
-                userDTO.setPassword(user.getPassword());
-                return userDTO;
+                return mapper.map(user);
             } catch (PersistenceException exception) {
                 throw new RuntimeException("Error creating user: " + exception);
             }

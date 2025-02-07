@@ -1,8 +1,7 @@
 package com.backend.system.models.dto;
 
-import com.backend.system.models.domain.product.Product;
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.util.UUID;

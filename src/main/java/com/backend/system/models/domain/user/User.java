@@ -53,5 +53,4 @@ public class User implements UserDetails {
             return List.of();
         }
     }
-
 }
