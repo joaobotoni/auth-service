@@ -2,7 +2,7 @@
 
 Este é um projeto  desenvolvido utilizando o **Spring Boot**, com integração de **Spring Security** e **JWT** (JSON Web Token) para a autenticação e autorização de usuários. A aplicação é uma API RESTful para gerenciamento de usuarios, incluindo funcionalidades como validação de usuários e cadastro.
 
-## Arquitetura do Projeto
+## Estrutura do Projeto
 
 O projeto é estruturado de forma modular, seguindo boas práticas de desenvolvimento, e está organizado em pacotes para facilitar a manutenção e escalabilidade. Abaixo, está a descrição das principais pastas e suas responsabilidades:
 
