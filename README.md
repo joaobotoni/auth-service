@@ -1,6 +1,6 @@
-# E-commerce Spring Boot - API RESTful com JWT e Spring Security
+# Spring Boot - API RESTful com JWT e Spring Security
 
-Este é um projeto de **e-commerce** desenvolvido utilizando o **Spring Boot**, com integração de **Spring Security** e **JWT** (JSON Web Token) para a autenticação e autorização de usuários. A aplicação é uma API RESTful para gerenciamento de um e-commerce, incluindo funcionalidades como validação de usuários, cadastro de produtos, e realização de pedidos.
+Este é um projeto  desenvolvido utilizando o **Spring Boot**, com integração de **Spring Security** e **JWT** (JSON Web Token) para a autenticação e autorização de usuários. A aplicação é uma API RESTful para gerenciamento de usuarios, incluindo funcionalidades como validação de usuários e cadastro.
 
 ## Arquitetura do Projeto
 
