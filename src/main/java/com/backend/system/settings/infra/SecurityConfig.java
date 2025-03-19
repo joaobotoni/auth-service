@@ -25,12 +25,12 @@ public class SecurityConfig {
     @Bean // Define o filtro de segurança para a aplicação
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf((csrf) -> csrf.disable())  // Desabilita a proteção CSRF, permitindo requisições de outros domínios
+                .csrf((csrf) -> csrf.disable()) // Desabilita a proteção CSRF, permitindo requisições de outros domínios
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Configura a política de autenticação para STATELESS
                 .authorizeHttpRequests((authorize) -> authorize  // Configura permissões para diferentes URLs
+                        .requestMatchers(HttpMethod.GET, "/home").permitAll()
                         .requestMatchers(HttpMethod.POST,"/auth/register", "/auth/login").permitAll()  // Permite acesso sem autenticação para as rotas de login e registro
-                        .requestMatchers("/product").hasRole("ADMIN") // se permite acessar as rotas de produtos os admin
                         .anyRequest().authenticated()  // Exige autenticação para qualquer outra requisição
                 )
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class); // Adiciona um filtro antes de fazer a verificação das credenciais

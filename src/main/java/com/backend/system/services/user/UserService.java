@@ -39,7 +39,6 @@ public class UserService {
             throw new RuntimeException("An unexpected error occurred:" + exception);
         }
     }
-
     private BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }

@@ -20,6 +20,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     @Autowired
     TokenService service; // Serviço para validar e extrair informações do token
+
     @Autowired
     UserRepository repository; // Repositório para consultar usuários pelo e-mail
 
