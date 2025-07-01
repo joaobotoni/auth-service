@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,15 +19,18 @@ public class UserPresenter implements UserAdapter, UserDetailsService {
 
     private final UserRepository repository;
     private final UserMapper mapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserPresenter(UserRepository repository, UserMapper mapper) {
+    public UserPresenter(UserRepository repository, UserMapper mapper, PasswordEncoder passwordEncoder) {
         this.repository = repository;
         this.mapper = mapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public User save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return repository.save(user);
     }
 

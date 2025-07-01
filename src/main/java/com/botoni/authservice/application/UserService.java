@@ -12,17 +12,15 @@ import org.springframework.stereotype.Service;
 public class UserService implements UsersUseCase {
 
     private final UserAdapter userAdapter;
-    private final PasswordEncoder passwordEncoder;
+
 
     @Autowired
-    public UserService(UserAdapter userAdapter, PasswordEncoder passwordEncoder) {
+    public UserService(UserAdapter userAdapter) {
         this.userAdapter = userAdapter;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public User save(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userAdapter.save(user);
     }
 
@@ -33,7 +31,7 @@ public class UserService implements UsersUseCase {
 
     @Override
     public void delete(Long id) {
-       userAdapter.delete(id);
+        userAdapter.delete(id);
     }
 
     @Override
