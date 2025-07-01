@@ -2,10 +2,9 @@ package com.botoni.authservice.controllers;
 
 
 import com.botoni.authservice.application.UserService;
-import com.botoni.authservice.core.domain.User;
-import com.botoni.authservice.core.domain.UserDTO;
-import com.botoni.authservice.core.domain.UserData;
-import com.botoni.authservice.infrastructure.security.TokenService;
+import com.botoni.authservice.core.domain.user.User;
+import com.botoni.authservice.core.domain.user.UserData;
+import com.botoni.authservice.infrastructure.security.TokenPresenter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,13 +21,13 @@ public class AuthController {
 
     private final UserService service;
     private final AuthenticationManager authenticationManager;
-    private final TokenService tokenService;
+    private final TokenPresenter tokenPresenter;
 
     @Autowired
-    public AuthController(UserService service, AuthenticationManager authenticationManager, TokenService tokenService) {
+    public AuthController(UserService service, AuthenticationManager authenticationManager, TokenPresenter tokenService, TokenPresenter tokenPresenter) {
         this.service = service;
         this.authenticationManager = authenticationManager;
-        this.tokenService = tokenService;
+        this.tokenPresenter = tokenPresenter;
     }
 
     @PostMapping("/login")
@@ -36,13 +35,13 @@ public class AuthController {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var auth = authenticationManager.authenticate(usernamePassword);
 
-        var token = tokenService.generateToken((User) auth.getPrincipal());
+        var token = tokenPresenter.generateToken((User) auth.getPrincipal());
         return ResponseEntity.ok().body(token);
     }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user) {
-        service.save(user);
-        return ResponseEntity.ok("Criado com sucesso");
+        User newUser = service.save(user);
+        return ResponseEntity.ok(newUser);
     }
 }

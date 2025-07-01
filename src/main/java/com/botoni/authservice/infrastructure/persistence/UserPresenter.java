@@ -1,8 +1,8 @@
 package com.botoni.authservice.infrastructure.persistence;
 
 import com.botoni.authservice.adpter.UserAdapter;
-import com.botoni.authservice.core.domain.User;
-import com.botoni.authservice.core.domain.UserDTO;
+import com.botoni.authservice.core.domain.user.User;
+import com.botoni.authservice.core.domain.user.UserDTO;
 import com.botoni.authservice.core.mapper.UserMapper;
 import com.botoni.authservice.repositories.UserRepository;
 import jakarta.persistence.PersistenceException;
@@ -11,7 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserPresenter implements UserAdapter, UserDetailsService {
 
     private final UserRepository repository;
@@ -24,8 +26,8 @@ public class UserPresenter implements UserAdapter, UserDetailsService {
     }
 
     @Override
-    public void save(User user) {
-        repository.save(user);
+    public User save(User user) {
+        return repository.save(user);
     }
 
     @Override

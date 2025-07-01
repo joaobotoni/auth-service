@@ -1,6 +1,7 @@
-package com.botoni.authservice.core.domain;
+package com.botoni.authservice.core.domain.user;
 
-import com.botoni.authservice.core.domain.type.UserType;
+import com.botoni.authservice.core.domain.user.type.UserType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,8 +16,12 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "users")
 public class User implements UserDetails {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
@@ -27,10 +32,8 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> role.name()); // ou use uma classe que implemente GrantedAuthority
+        return List.of(() -> role.name());
     }
-
-
 
     @Override
     public String getUsername() {

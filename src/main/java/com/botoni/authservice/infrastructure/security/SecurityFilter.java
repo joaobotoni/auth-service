@@ -17,11 +17,15 @@ import java.io.IOException;
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
 
-    @Autowired
-    TokenService service;
+
+    private final TokenPresenter service;
+    private final UserRepository repository;
 
     @Autowired
-    UserRepository repository;
+    public SecurityFilter(TokenPresenter service, UserRepository repository) {
+        this.service = service;
+        this.repository = repository;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -36,7 +40,6 @@ public class SecurityFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    // Método auxiliar para extrair o token do cabeçalho Authorization da requisição HTTP
     private String recoverToken(HttpServletRequest request) {
         var authHeader = request.getHeader("Authorization");
         if (authHeader == null) return null;
