@@ -1,11 +1,10 @@
 package com.botoni.authservice.application;
 
 import com.botoni.authservice.adpter.UserAdapter;
-import com.botoni.authservice.core.domain.user.UserDTO;
-import com.botoni.authservice.core.usecase.UsersUseCase;
 import com.botoni.authservice.core.domain.user.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.botoni.authservice.core.domain.user.UserDTO;
+import com.botoni.authservice.core.domain.user.UserData;
+import com.botoni.authservice.core.usecase.UsersUseCase;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,8 +12,6 @@ public class UserService implements UsersUseCase {
 
     private final UserAdapter userAdapter;
 
-
-    @Autowired
     public UserService(UserAdapter userAdapter) {
         this.userAdapter = userAdapter;
     }
@@ -25,22 +22,22 @@ public class UserService implements UsersUseCase {
     }
 
     @Override
-    public void update(User user) {
-        userAdapter.update(user);
+    public User update(User user) {
+        return userAdapter.update(user);
     }
 
     @Override
-    public void delete(Long id) {
-        userAdapter.delete(id);
-    }
-
-    @Override
-    public User findUserByEmail(String email) {
-        return userAdapter.findUserByEmail(email);
+    public User delete(Long id) {
+        return userAdapter.delete(id);
     }
 
     @Override
     public UserDTO validateUserCreated(User user) {
         return userAdapter.validateUserCreated(user);
+    }
+
+    @Override
+    public User register(User user) {
+      return userAdapter.register(user);
     }
 }

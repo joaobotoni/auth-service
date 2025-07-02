@@ -34,8 +34,6 @@ O projeto é estruturado de forma modular, seguindo boas práticas de desenvolvi
 ![Static Badge](https://img.shields.io/badge/-PostgreSQL-232F3E?style=flat&logo=postgresql)
 
 
-
-
 ## Configuração de Segurança
 
 A aplicação utiliza **Spring Security** para configurar a autenticação e autorização de usuários. O gerenciamento de sessão é feito através de **JWT**, onde os tokens são gerados no momento do login e devem ser enviados pelo cliente em todas as requisições subsequentes para garantir o acesso.

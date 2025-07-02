@@ -5,12 +5,8 @@ import com.botoni.authservice.core.domain.user.UserDTO;
 
 public interface UserAdapter {
     User save(User user);
-
-    void update(User user);
-
-    void delete(Long id);
-
-    User findUserByEmail(String email);
-
+    User update(User user);
+    User delete(Long id);
     UserDTO validateUserCreated(User user);
+    User register(User user);
 }

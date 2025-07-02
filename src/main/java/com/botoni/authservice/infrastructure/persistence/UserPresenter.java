@@ -3,10 +3,14 @@ package com.botoni.authservice.infrastructure.persistence;
 import com.botoni.authservice.adpter.UserAdapter;
 import com.botoni.authservice.core.domain.user.User;
 import com.botoni.authservice.core.domain.user.UserDTO;
+import com.botoni.authservice.core.domain.user.UserData;
 import com.botoni.authservice.core.mapper.UserMapper;
+import com.botoni.authservice.infrastructure.security.TokenPresenter;
 import com.botoni.authservice.repositories.UserRepository;
 import jakarta.persistence.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,6 +32,7 @@ public class UserPresenter implements UserAdapter, UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
+
     @Override
     public User save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -35,18 +40,15 @@ public class UserPresenter implements UserAdapter, UserDetailsService {
     }
 
     @Override
-    public void update(User user) {
-        repository.save(user);
+    public User update(User user) {
+        return repository.save(user);
     }
 
     @Override
-    public void delete(Long id) {
-        repository.deleteById(id);
-    }
-
-    @Override
-    public User findUserByEmail(String email) {
-        return repository.findByEmail(email);
+    public User delete(Long id) {
+        User user = repository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        repository.deleteById(user.getId());
+        return user;
     }
 
     @Override
@@ -67,8 +69,9 @@ public class UserPresenter implements UserAdapter, UserDetailsService {
         }
     }
 
-    private BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    @Override
+    public User register(User user) {
+        return this.save(user);
     }
 
     @Override
@@ -78,5 +81,13 @@ public class UserPresenter implements UserAdapter, UserDetailsService {
             throw new UsernameNotFoundException("User not found with email: " + username);
         }
         return user;
+    }
+
+    private BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    private User findUserByEmail(String email) {
+        return repository.findByEmail(email);
     }
 }
