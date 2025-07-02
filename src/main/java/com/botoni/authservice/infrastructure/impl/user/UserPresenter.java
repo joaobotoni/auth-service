@@ -1,10 +1,10 @@
-package com.botoni.authservice.infrastructure.persistence;
+package com.botoni.authservice.infrastructure.impl.user;
 
 import com.botoni.authservice.adpter.UserAdapter;
-import com.botoni.authservice.core.domain.user.User;
-import com.botoni.authservice.core.domain.user.UserDTO;
-import com.botoni.authservice.core.mapper.UserMapper;
-import com.botoni.authservice.repositories.UserRepository;
+import com.botoni.authservice.core.domain.model.User;
+import com.botoni.authservice.infrastructure.web.dto.UserDTO;
+import com.botoni.authservice.infrastructure.persistence.mapper.UserMapper;
+import com.botoni.authservice.infrastructure.persistence.repositories.UserRepository;
 import jakarta.persistence.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

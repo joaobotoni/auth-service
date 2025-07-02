@@ -1,7 +1,7 @@
-package com.botoni.authservice.application;
+package com.botoni.authservice.core.application;
 
 import com.botoni.authservice.adpter.AuthAdapter;
-import com.botoni.authservice.core.domain.user.UserData;
+import com.botoni.authservice.infrastructure.web.dto.UserData;
 import com.botoni.authservice.core.usecase.AuthUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
-package com.botoni.authservice.configuration;
+package com.botoni.authservice.infrastructure.configuration;
 
-import com.botoni.authservice.infrastructure.security.TokenPresenter;
-import com.botoni.authservice.repositories.UserRepository;
+import com.botoni.authservice.infrastructure.impl.security.TokenImpl;
+import com.botoni.authservice.infrastructure.persistence.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,11 +19,11 @@ import java.io.IOException;
 public class SecurityFilterConfig extends OncePerRequestFilter {
 
 
-    private final TokenPresenter service;
+    private final TokenImpl service;
     private final UserRepository repository;
 
     @Autowired
-    public SecurityFilterConfig(TokenPresenter service, UserRepository repository) {
+    public SecurityFilterConfig(TokenImpl service, UserRepository repository) {
         this.service = service;
         this.repository = repository;
     }

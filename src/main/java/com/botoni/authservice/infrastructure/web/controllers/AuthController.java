@@ -1,11 +1,11 @@
-package com.botoni.authservice.controllers;
+package com.botoni.authservice.infrastructure.web.controllers;
 
 
-import com.botoni.authservice.application.AuthService;
-import com.botoni.authservice.application.UserService;
-import com.botoni.authservice.core.domain.user.User;
-import com.botoni.authservice.core.domain.user.UserData;
-import com.botoni.authservice.infrastructure.security.TokenPresenter;
+import com.botoni.authservice.core.application.AuthService;
+import com.botoni.authservice.core.application.UserService;
+import com.botoni.authservice.core.domain.model.User;
+import com.botoni.authservice.infrastructure.web.dto.UserData;
+import com.botoni.authservice.infrastructure.impl.security.TokenImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,7 +23,7 @@ public class AuthController {
     private final AuthService authService;
 
     @Autowired
-    public AuthController(UserService service, AuthenticationManager authenticationManager, TokenPresenter tokenService, TokenPresenter tokenPresenter, AuthService authService) {
+    public AuthController(UserService service, AuthenticationManager authenticationManager, TokenImpl tokenService, TokenImpl tokenPresenter, AuthService authService) {
         this.service = service;
         this.authService = authService;
     }

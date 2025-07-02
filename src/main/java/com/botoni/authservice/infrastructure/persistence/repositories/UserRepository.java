@@ -1,6 +1,6 @@
-package com.botoni.authservice.repositories;
+package com.botoni.authservice.infrastructure.persistence.repositories;
 
-import com.botoni.authservice.core.domain.user.User;
+import com.botoni.authservice.core.domain.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

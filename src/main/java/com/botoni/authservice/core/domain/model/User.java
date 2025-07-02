@@ -1,6 +1,6 @@
-package com.botoni.authservice.core.domain.user;
+package com.botoni.authservice.core.domain.model;
 
-import com.botoni.authservice.core.domain.user.type.UserType;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,11 +20,17 @@ import java.util.List;
 @Table(name = "users")
 public class User implements UserDetails {
 
+    public enum UserType {
+        COMMON,
+        ADMIN
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String email;
     private String password;
     private UserType role;

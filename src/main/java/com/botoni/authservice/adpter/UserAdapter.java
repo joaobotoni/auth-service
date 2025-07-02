@@ -1,7 +1,7 @@
 package com.botoni.authservice.adpter;
 
-import com.botoni.authservice.core.domain.user.User;
-import com.botoni.authservice.core.domain.user.UserDTO;
+import com.botoni.authservice.core.domain.model.User;
+import com.botoni.authservice.infrastructure.web.dto.UserDTO;
 
 public interface UserAdapter {
     User save(User user);

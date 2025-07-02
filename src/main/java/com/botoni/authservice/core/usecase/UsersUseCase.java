@@ -1,8 +1,7 @@
 package com.botoni.authservice.core.usecase;
 
-import com.botoni.authservice.core.domain.user.User;
-import com.botoni.authservice.core.domain.user.UserDTO;
-import com.botoni.authservice.core.domain.user.UserData;
+import com.botoni.authservice.core.domain.model.User;
+import com.botoni.authservice.infrastructure.web.dto.UserDTO;
 
 public interface UsersUseCase {
     User save(User user);
