@@ -1,31 +1,36 @@
-package com.botoni.authservice.infrastructure.impl.security;
+package com.botoni.authservice.infrastructure.implementation.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.botoni.authservice.adapter.TokenAdapter;
-import com.botoni.authservice.core.domain.model.User;
+import com.botoni.authservice.core.domain.User;
+import com.botoni.authservice.infrastructure.persistence.entities.UserEntity;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Service
-public class TokenImpl implements TokenAdapter {
+public class TokenServiceImpl implements TokenAdapter {
 
     @Value("${api.security.token.secret}")
     private String secret;
 
+
     @Override
-    public String generateToken(User user) {
+    public String generateToken(UserDetails userDetails) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             String token = JWT.create()
                     .withIssuer("authservice")
-                    .withSubject(user.getEmail())
+                    .withSubject(userDetails.getUsername())
                     .withExpiresAt(expirationDate())
                     .sign(algorithm);
 
@@ -34,6 +39,7 @@ public class TokenImpl implements TokenAdapter {
             throw new RuntimeException("Error while generating token: " + e);
         }
     }
+
 
     @Override
     public String validateToken(String token) {

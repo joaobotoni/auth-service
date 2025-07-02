@@ -1,6 +1,6 @@
 package com.botoni.authservice.infrastructure.configuration;
 
-import com.botoni.authservice.infrastructure.impl.security.TokenImpl;
+import com.botoni.authservice.infrastructure.implementation.security.TokenServiceImpl;
 import com.botoni.authservice.infrastructure.persistence.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -19,11 +19,11 @@ import java.io.IOException;
 public class SecurityFilterConfig extends OncePerRequestFilter {
 
 
-    private final TokenImpl service;
+    private final TokenServiceImpl service;
     private final UserRepository repository;
 
     @Autowired
-    public SecurityFilterConfig(TokenImpl service, UserRepository repository) {
+    public SecurityFilterConfig(TokenServiceImpl service, UserRepository repository) {
         this.service = service;
         this.repository = repository;
     }
@@ -34,7 +34,7 @@ public class SecurityFilterConfig extends OncePerRequestFilter {
         var token = this.recoverToken(request);
         if (token != null) {
             var subject = service.validateToken(token);
-            UserDetails user = repository.findByEmail(subject);
+            UserDetails user = repository.findByEmail(subject).orElseThrow(() -> new RuntimeException("User not found"));
             var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }

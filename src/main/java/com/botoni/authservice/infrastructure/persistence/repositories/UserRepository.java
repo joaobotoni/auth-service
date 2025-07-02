@@ -1,8 +1,10 @@
 package com.botoni.authservice.infrastructure.persistence.repositories;
 
-import com.botoni.authservice.core.domain.model.User;
+import com.botoni.authservice.infrastructure.persistence.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByEmail(String email);
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
+    Optional<UserEntity> findByEmail(String email);
 }

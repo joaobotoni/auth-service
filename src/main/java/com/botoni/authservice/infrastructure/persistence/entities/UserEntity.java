@@ -1,6 +1,8 @@
-package com.botoni.authservice.core.domain.model;
+package com.botoni.authservice.infrastructure.persistence.entities;
 
 
+
+import com.botoni.authservice.core.domain.UserType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,12 +20,9 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
+public class UserEntity implements UserDetails {
 
-    public enum UserType {
-        COMMON,
-        ADMIN
-    }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +32,7 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING)
     private UserType role;
 
 

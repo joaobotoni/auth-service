@@ -1,7 +1,8 @@
-package com.botoni.authservice.infrastructure.impl.security;
+package com.botoni.authservice.infrastructure.implementation.security;
 
 import com.botoni.authservice.adapter.AuthAdapter;
-import com.botoni.authservice.core.domain.model.User;
+import com.botoni.authservice.core.domain.User;
+import com.botoni.authservice.infrastructure.persistence.entities.UserEntity;
 import com.botoni.authservice.infrastructure.web.dto.UserData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,13 +10,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthImpl implements AuthAdapter {
+public class AuthServiceImpl implements AuthAdapter {
 
     private final AuthenticationManager authenticationManager;
-    private final TokenImpl tokenImpl;
+    private final TokenServiceImpl tokenImpl;
 
     @Autowired
-    public AuthImpl(AuthenticationManager authenticationManager, TokenImpl tokenPresenter) {
+    public AuthServiceImpl(AuthenticationManager authenticationManager, TokenServiceImpl tokenPresenter) {
         this.authenticationManager = authenticationManager;
         this.tokenImpl = tokenPresenter;
     }
@@ -24,6 +25,6 @@ public class AuthImpl implements AuthAdapter {
     public String login(UserData data) {
         var authToken = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var auth = authenticationManager.authenticate(authToken);
-        return tokenImpl.generateToken((User) auth.getPrincipal());
+        return tokenImpl.generateToken((UserEntity) auth.getPrincipal());
     }
 }

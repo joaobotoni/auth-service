@@ -1,18 +1,24 @@
 package com.botoni.authservice.application;
 
 import com.botoni.authservice.adapter.UserAdapter;
-import com.botoni.authservice.core.domain.model.User;
+import com.botoni.authservice.core.domain.User;
+import com.botoni.authservice.infrastructure.persistence.entities.UserEntity;
 import com.botoni.authservice.infrastructure.web.dto.UserDTO;
 import com.botoni.authservice.core.usecase.UsersUseCase;
+import com.botoni.authservice.utils.mapper.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService implements UsersUseCase {
 
     private final UserAdapter userAdapter;
+    private final UserMapper mapper;
 
-    public UserService(UserAdapter userAdapter) {
+    @Autowired
+    public UserService(UserAdapter userAdapter, UserMapper mapper) {
         this.userAdapter = userAdapter;
+        this.mapper = mapper;
     }
 
     @Override
@@ -37,6 +43,6 @@ public class UserService implements UsersUseCase {
 
     @Override
     public User register(User user) {
-      return userAdapter.register(user);
+        return userAdapter.register(user);
     }
 }

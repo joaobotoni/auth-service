@@ -1,4 +1,4 @@
-package com.botoni.authservice.core.domain.exception;
+package com.botoni.authservice.utils.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
