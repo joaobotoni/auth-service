@@ -1,6 +1,6 @@
 package com.botoni.authservice.infrastructure.impl.security;
 
-import com.botoni.authservice.adpter.AuthAdapter;
+import com.botoni.authservice.adapter.AuthAdapter;
 import com.botoni.authservice.core.domain.model.User;
 import com.botoni.authservice.infrastructure.web.dto.UserData;
 import org.springframework.beans.factory.annotation.Autowired;

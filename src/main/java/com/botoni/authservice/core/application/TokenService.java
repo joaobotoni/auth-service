@@ -1,6 +1,6 @@
 package com.botoni.authservice.core.application;
 
-import com.botoni.authservice.adpter.TokenAdapter;
+import com.botoni.authservice.adapter.TokenAdapter;
 import com.botoni.authservice.core.domain.model.User;
 import com.botoni.authservice.core.usecase.TokenUseCase;
 import org.springframework.beans.factory.annotation.Autowired;

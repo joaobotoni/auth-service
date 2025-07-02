@@ -1,6 +1,6 @@
 package com.botoni.authservice.core.application;
 
-import com.botoni.authservice.adpter.UserAdapter;
+import com.botoni.authservice.adapter.UserAdapter;
 import com.botoni.authservice.core.domain.model.User;
 import com.botoni.authservice.infrastructure.web.dto.UserDTO;
 import com.botoni.authservice.core.usecase.UsersUseCase;
