@@ -8,6 +8,6 @@ public interface UsersUseCase {
     User save(User user);
     User update(User user);
     User delete(Long id);
-    UserDTO validateUserCreated(User user);
     User register(User user);
+    UserDTO validateUserCreated(User user);
 }
