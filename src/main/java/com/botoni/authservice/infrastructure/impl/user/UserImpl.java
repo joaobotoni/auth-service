@@ -15,14 +15,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserPresenter implements UserAdapter, UserDetailsService {
+public class UserImpl implements UserAdapter, UserDetailsService {
 
     private final UserRepository repository;
     private final UserMapper mapper;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserPresenter(UserRepository repository, UserMapper mapper, PasswordEncoder passwordEncoder) {
+    public UserImpl(UserRepository repository, UserMapper mapper, PasswordEncoder passwordEncoder) {
         this.repository = repository;
         this.mapper = mapper;
         this.passwordEncoder = passwordEncoder;

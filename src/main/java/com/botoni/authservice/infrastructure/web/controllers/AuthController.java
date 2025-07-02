@@ -1,8 +1,8 @@
 package com.botoni.authservice.infrastructure.web.controllers;
 
 
-import com.botoni.authservice.core.application.AuthService;
-import com.botoni.authservice.core.application.UserService;
+import com.botoni.authservice.application.AuthService;
+import com.botoni.authservice.application.UserService;
 import com.botoni.authservice.core.domain.model.User;
 import com.botoni.authservice.infrastructure.web.dto.UserData;
 import com.botoni.authservice.infrastructure.impl.security.TokenImpl;

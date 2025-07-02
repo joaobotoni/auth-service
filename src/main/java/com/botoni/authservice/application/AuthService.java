@@ -1,4 +1,4 @@
-package com.botoni.authservice.core.application;
+package com.botoni.authservice.application;
 
 import com.botoni.authservice.adapter.AuthAdapter;
 import com.botoni.authservice.infrastructure.web.dto.UserData;
