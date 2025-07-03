@@ -2,7 +2,6 @@ package com.botoni.authservice.application;
 
 import com.botoni.authservice.adapter.UserAdapter;
 import com.botoni.authservice.core.domain.User;
-import com.botoni.authservice.infrastructure.persistence.entities.UserEntity;
 import com.botoni.authservice.infrastructure.web.dto.UserDTO;
 import com.botoni.authservice.core.usecase.UsersUseCase;
 import com.botoni.authservice.utils.mapper.UserMapper;

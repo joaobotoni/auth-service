@@ -1,11 +1,11 @@
-package com.botoni.authservice.infrastructure.implementation.user;
+package com.botoni.authservice.infrastructure.implementation.services.user;
 
 import com.botoni.authservice.adapter.UserAdapter;
 import com.botoni.authservice.core.domain.User;
-import com.botoni.authservice.infrastructure.persistence.entities.UserEntity;
+import com.botoni.authservice.infrastructure.implementation.persistence.entities.UserEntity;
 import com.botoni.authservice.infrastructure.web.dto.UserDTO;
 import com.botoni.authservice.utils.mapper.UserMapper;
-import com.botoni.authservice.infrastructure.persistence.repositories.UserRepository;
+import com.botoni.authservice.infrastructure.implementation.persistence.repositories.UserRepository;
 import jakarta.persistence.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -79,5 +79,4 @@ public class UserServiceImpl implements UserAdapter, UserDetailsService {
         return repository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + username));
     }
-
 }

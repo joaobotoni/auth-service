@@ -1,7 +1,7 @@
 package com.botoni.authservice.infrastructure.configuration;
 
-import com.botoni.authservice.infrastructure.implementation.security.TokenServiceImpl;
-import com.botoni.authservice.infrastructure.persistence.repositories.UserRepository;
+import com.botoni.authservice.infrastructure.implementation.services.security.TokenServiceImpl;
+import com.botoni.authservice.infrastructure.implementation.persistence.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

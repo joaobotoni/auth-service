@@ -1,4 +1,4 @@
-package com.botoni.authservice.infrastructure.persistence.entities;
+package com.botoni.authservice.infrastructure.implementation.persistence.entities;
 
 
 

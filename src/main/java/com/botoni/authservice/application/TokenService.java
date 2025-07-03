@@ -2,7 +2,6 @@ package com.botoni.authservice.application;
 
 import com.botoni.authservice.adapter.TokenAdapter;
 import com.botoni.authservice.core.domain.User;
-import com.botoni.authservice.infrastructure.persistence.entities.UserEntity;
 import com.botoni.authservice.core.usecase.TokenUseCase;
 import com.botoni.authservice.utils.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;

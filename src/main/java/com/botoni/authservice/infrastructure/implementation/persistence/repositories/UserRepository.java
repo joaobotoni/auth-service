@@ -1,6 +1,6 @@
-package com.botoni.authservice.infrastructure.persistence.repositories;
+package com.botoni.authservice.infrastructure.implementation.persistence.repositories;
 
-import com.botoni.authservice.infrastructure.persistence.entities.UserEntity;
+import com.botoni.authservice.infrastructure.implementation.persistence.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

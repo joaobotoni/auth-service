@@ -1,12 +1,10 @@
-package com.botoni.authservice.infrastructure.implementation.security;
+package com.botoni.authservice.infrastructure.implementation.services.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.botoni.authservice.adapter.TokenAdapter;
-import com.botoni.authservice.core.domain.User;
-import com.botoni.authservice.infrastructure.persistence.entities.UserEntity;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -14,8 +12,6 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-
-import org.springframework.security.core.userdetails.UserDetails;
 
 @Service
 public class TokenServiceImpl implements TokenAdapter {
@@ -45,8 +41,6 @@ public class TokenServiceImpl implements TokenAdapter {
     public String validateToken(String token) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
-
-
             return JWT.require(algorithm)
                     .withIssuer("authservice")
                     .build()
