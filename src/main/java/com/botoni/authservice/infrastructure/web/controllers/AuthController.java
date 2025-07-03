@@ -22,7 +22,7 @@ public class AuthController {
     private final AuthService authService;
 
     @Autowired
-    public AuthController(UserService service, AuthenticationManager authenticationManager, TokenServiceImpl tokenService, TokenServiceImpl tokenPresenter, AuthService authService) {
+    public AuthController(UserService service, AuthenticationManager authenticationManager, AuthService authService) {
         this.service = service;
         this.authService = authService;
     }
