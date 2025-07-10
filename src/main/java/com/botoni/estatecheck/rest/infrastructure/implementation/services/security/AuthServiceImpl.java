@@ -2,7 +2,7 @@ package com.botoni.estatecheck.rest.infrastructure.implementation.services.secur
 
 import com.botoni.estatecheck.rest.adapter.AuthAdapter;
 import com.botoni.estatecheck.rest.infrastructure.implementation.persistence.entities.UserEntity;
-import com.botoni.authservice.infrastructure.web.dto.UserData;
+import com.botoni.estatecheck.rest.utils.dtos.UserData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

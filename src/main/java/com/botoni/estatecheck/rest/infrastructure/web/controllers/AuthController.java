@@ -4,7 +4,7 @@ package com.botoni.estatecheck.rest.infrastructure.web.controllers;
 import com.botoni.estatecheck.rest.application.AuthService;
 import com.botoni.estatecheck.rest.application.UserService;
 import com.botoni.estatecheck.rest.core.domain.User;
-import com.botoni.authservice.infrastructure.web.dto.UserData;
+import com.botoni.estatecheck.rest.utils.dtos.UserData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,12 +1,13 @@
 package com.botoni.estatecheck.rest.core.usecase;
 
 import com.botoni.estatecheck.rest.core.domain.User;
-import com.botoni.authservice.infrastructure.web.dto.UserDTO;
+
+import java.util.UUID;
 
 public interface UsersUseCase {
     User save(User user);
     User update(User user);
-    User delete(Long id);
+    User delete(UUID id);
     User register(User user);
-    UserDTO validateUserCreated(User user);
+    User validateUserCreated(User user);
 }

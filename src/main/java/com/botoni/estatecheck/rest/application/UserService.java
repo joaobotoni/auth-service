@@ -2,22 +2,20 @@ package com.botoni.estatecheck.rest.application;
 
 import com.botoni.estatecheck.rest.adapter.UserAdapter;
 import com.botoni.estatecheck.rest.core.domain.User;
-import com.botoni.authservice.infrastructure.web.dto.UserDTO;
 import com.botoni.estatecheck.rest.core.usecase.UsersUseCase;
 import com.botoni.estatecheck.rest.utils.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class UserService implements UsersUseCase {
 
     private final UserAdapter userAdapter;
-    private final UserMapper mapper;
-
     @Autowired
-    public UserService(UserAdapter userAdapter, UserMapper mapper) {
+    public UserService(UserAdapter userAdapter) {
         this.userAdapter = userAdapter;
-        this.mapper = mapper;
     }
 
     @Override
@@ -31,12 +29,12 @@ public class UserService implements UsersUseCase {
     }
 
     @Override
-    public User delete(Long id) {
+    public User delete(UUID id) {
         return userAdapter.delete(id);
     }
 
     @Override
-    public UserDTO validateUserCreated(User user) {
+    public User validateUserCreated(User user) {
         return userAdapter.validateUserCreated(user);
     }
 

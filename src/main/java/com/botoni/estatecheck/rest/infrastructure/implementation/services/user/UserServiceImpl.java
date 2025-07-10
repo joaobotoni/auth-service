@@ -3,7 +3,6 @@ package com.botoni.estatecheck.rest.infrastructure.implementation.services.user;
 import com.botoni.estatecheck.rest.adapter.UserAdapter;
 import com.botoni.estatecheck.rest.core.domain.User;
 import com.botoni.estatecheck.rest.infrastructure.implementation.persistence.entities.UserEntity;
-import com.botoni.authservice.infrastructure.web.dto.UserDTO;
 import com.botoni.estatecheck.rest.utils.mapper.UserMapper;
 import com.botoni.estatecheck.rest.infrastructure.implementation.persistence.repositories.UserRepository;
 import jakarta.persistence.PersistenceException;
@@ -13,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserAdapter, UserDetailsService {
@@ -45,7 +46,7 @@ public class UserServiceImpl implements UserAdapter, UserDetailsService {
     }
 
     @Override
-    public User delete(Long id) {
+    public User delete(UUID id) {
         UserEntity entity = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         repository.deleteById(entity.getId());
@@ -53,7 +54,7 @@ public class UserServiceImpl implements UserAdapter, UserDetailsService {
     }
 
     @Override
-    public UserDTO validateUserCreated(User user) {
+    public User validateUserCreated(User user) {
         if (repository.findByEmail(user.getEmail()).isPresent()) {
             throw new RuntimeException("A user with this email already exists");
         }
@@ -62,8 +63,7 @@ public class UserServiceImpl implements UserAdapter, UserDetailsService {
         entity.setPassword(passwordEncoder.encode(user.getPassword()));
 
         try {
-            UserEntity saved = repository.save(entity);
-            return mapper.toDTO(mapper.toDomain(saved));
+            return mapper.toDomain(entity);
         } catch (PersistenceException e) {
             throw new RuntimeException("Error creating user: " + e.getMessage(), e);
         }

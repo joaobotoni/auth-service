@@ -1,17 +1,18 @@
 package com.botoni.estatecheck.rest.infrastructure.implementation.persistence.entities;
 
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -19,11 +20,11 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class UserEntity  implements UserDetails{
+public class UserEntity implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(updatable = false, nullable = false)
+    private UUID id;
     private String firstName;
     private String lastName;
     @Column(unique = true)
@@ -58,5 +59,12 @@ public class UserEntity  implements UserDetails{
     @Override
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
+    }
+
+    @PrePersist
+    protected void uuid() {
+        if (this.id == null) {
+            this.id = UUID.randomUUID();
+        }
     }
 }

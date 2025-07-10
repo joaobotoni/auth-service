@@ -2,16 +2,18 @@ package com.botoni.estatecheck.rest.core.domain;
 
 import jakarta.persistence.Column;
 
+import java.util.UUID;
+
 public class User {
 
-    private Long id;
+    private UUID id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
 
-    public User(Long id, String firstName, String lastName, String email, String password) {
-        this.id = id;
+    public User(String firstName, String lastName, String email, String password) {
+        this.id = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -21,11 +23,11 @@ public class User {
     public User() {
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
