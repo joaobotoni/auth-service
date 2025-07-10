@@ -1,4 +1,4 @@
-package com.botoni.estatecheck.rest.core.usecase;
+package com.botoni.estatecheck.rest.core.usecase.users;
 
 import com.botoni.estatecheck.rest.core.domain.User;
 

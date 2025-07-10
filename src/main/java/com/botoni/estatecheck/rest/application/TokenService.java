@@ -2,7 +2,7 @@ package com.botoni.estatecheck.rest.application;
 
 import com.botoni.estatecheck.rest.adapter.TokenAdapter;
 import com.botoni.estatecheck.rest.core.domain.User;
-import com.botoni.estatecheck.rest.core.usecase.TokenUseCase;
+import com.botoni.estatecheck.rest.core.usecase.users.TokenUseCase;
 import com.botoni.estatecheck.rest.utils.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
