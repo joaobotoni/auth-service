@@ -40,7 +40,7 @@ public class AuthController {
     @GetMapping("/google")
     public ResponseEntity<Void> redirectToGoogle() {
         URI uri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/oauth2/authorization/google")
+                .path("http://localhost:8080/login/oauth2/code/google")
                 .build()
                 .toUri();
 
