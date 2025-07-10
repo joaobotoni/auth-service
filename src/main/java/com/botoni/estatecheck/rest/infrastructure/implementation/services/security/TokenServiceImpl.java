@@ -28,6 +28,7 @@ public class TokenServiceImpl implements TokenAdapter {
                     .withIssuer("authservice")
                     .withSubject(userDetails.getUsername())
                     .withExpiresAt(expirationDate())
+                    .withJWTId(java.util.UUID.randomUUID().toString())
                     .sign(algorithm);
 
             return token;

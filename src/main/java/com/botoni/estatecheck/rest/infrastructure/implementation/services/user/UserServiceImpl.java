@@ -63,6 +63,7 @@ public class UserServiceImpl implements UserAdapter, UserDetailsService {
         entity.setPassword(passwordEncoder.encode(user.getPassword()));
 
         try {
+            UserEntity saved = repository.save(entity);
             return mapper.toDomain(entity);
         } catch (PersistenceException e) {
             throw new RuntimeException("Error creating user: " + e.getMessage(), e);
