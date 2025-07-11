@@ -24,13 +24,7 @@ public class SecurityFilterConfig extends OncePerRequestFilter {
     private final TokenServiceImpl service;
     private final UserRepository repository;
 
-    private static final List<String> paths = Arrays.asList(
-            "/auth/register",
-            "/auth/login",
-            "/oauth2",
-            "/error",
-            "/logout"
-    );
+
 
     @Autowired
     public SecurityFilterConfig(TokenServiceImpl service, UserRepository repository) {
@@ -40,13 +34,6 @@ public class SecurityFilterConfig extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
-        String path = request.getRequestURI();
-        if (oauth2Paths(path)) {
-            filterChain.doFilter(request, response);
-            return;
-        }
-
         var token = this.recoverToken(request);
         if (token != null) {
             try {
@@ -60,10 +47,6 @@ public class SecurityFilterConfig extends OncePerRequestFilter {
             }
         }
         filterChain.doFilter(request, response);
-    }
-
-    public boolean oauth2Paths(String path){
-        return paths.stream().anyMatch(path::startsWith);
     }
 
     private String recoverToken(HttpServletRequest request) {

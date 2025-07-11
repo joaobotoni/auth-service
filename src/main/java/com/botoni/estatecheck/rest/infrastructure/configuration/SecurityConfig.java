@@ -31,9 +31,6 @@ public class SecurityConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/register", "/auth/login").permitAll()
-                        .requestMatchers("/oauth2/**").permitAll()
-                                .requestMatchers("/login/oauth2/**").permitAll()
-                                .requestMatchers("/error").permitAll()
                         .anyRequest().authenticated()
 
                 )
