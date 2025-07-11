@@ -9,9 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
 
 @RestController
 @RequestMapping("/auth")
@@ -36,14 +33,5 @@ public class AuthController {
     public ResponseEntity<?> register(@RequestBody User user) {
         User response = service.register(user);
         return ResponseEntity.ok(response);
-    }
-    @GetMapping("/google")
-    public ResponseEntity<Void> redirectToGoogle() {
-        URI uri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("http://localhost:8080/login/oauth2/code/google")
-                .build()
-                .toUri();
-
-        return ResponseEntity.status(302).location(uri).build();
     }
 }
