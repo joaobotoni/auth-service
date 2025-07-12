@@ -1,4 +1,4 @@
-package com.botoni.estatecheck.rest.utils.exception;
+package com.botoni.vistoo.rest.utils.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;

@@ -1,4 +1,4 @@
-package com.botoni.estatecheck.rest;
+package com.botoni.vistoo.rest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
